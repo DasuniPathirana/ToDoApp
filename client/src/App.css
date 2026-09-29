@@ -1,0 +1,35 @@
+.todo-item {
+  transition: background-color 0.2s ease, opacity 0.3s ease;
+}
+
+.todo-item:hover {
+  background-color: #f8f9fa;
+}
+
+.todo-done .todo-title {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+.todo-done .todo-desc {
+  opacity: 0.5;
+}
+
+.todo-enter {
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.btn {
+  transition: all 0.2s ease;
+}
