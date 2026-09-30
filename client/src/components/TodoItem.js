@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ListGroup, Form, Button, Badge, Modal } from 'react-bootstrap';
+import { ListGroup, Form, Button, Modal } from 'react-bootstrap';
 
 function TodoItem({ todo, onToggle, onEdit, onDelete }) {
   const [showConfirm, setShowConfirm] = useState(false);
@@ -30,40 +30,39 @@ function TodoItem({ todo, onToggle, onEdit, onDelete }) {
         />
 
         <div className="flex-grow-1">
-          <h6 className="mb-1 todo-title">
+          <h6 className="mb-1 todo-title fw-bold">
             {todo.title}
-            {todo.done && <Badge bg="success" className="ms-2">Done</Badge>}
+            {todo.done && <span className="highlight-green ms-2" style={{fontSize: '0.8rem'}}>Done</span>}
           </h6>
           {todo.description && (
-            <p className="mb-0 text-muted small todo-desc">
+            <p className="mb-0 todo-desc">
               {todo.description}
             </p>
           )}
         </div>
 
-        <div className="d-flex gap-1">
-          <Button size="sm" variant="outline-primary" onClick={() => onEdit(todo)}>
+        <div className="d-flex gap-2">
+          <Button size="sm" className="btn-custom-secondary" onClick={() => onEdit(todo)}>
             Edit
           </Button>
-          <Button size="sm" variant="outline-danger" onClick={handleDeleteClick}>
+          <Button size="sm" className="btn-custom-danger" onClick={handleDeleteClick}>
             Delete
           </Button>
         </div>
       </ListGroup.Item>
 
-      {/* Delete Confirmation Modal */}
       <Modal show={showConfirm} onHide={cancelDelete} centered size="sm">
-        <Modal.Header closeButton>
-          <Modal.Title className="h5">Delete Task</Modal.Title>
+        <Modal.Header closeButton style={{ borderBottom: '2px solid #ece4d8', backgroundColor: '#fffcf7' }}>
+          <Modal.Title className="planner-title h4">Delete Task</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          Are you sure you want to delete this task? This cannot be undone.
+        <Modal.Body style={{ backgroundColor: '#fffcf7', fontFamily: 'Nunito' }}>
+          Are you sure you want to delete this task?
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={cancelDelete}>
+        <Modal.Footer style={{ borderTop: '2px solid #ece4d8', backgroundColor: '#fffcf7' }}>
+          <Button className="btn-custom-secondary" onClick={cancelDelete}>
             Cancel
           </Button>
-          <Button variant="danger" onClick={confirmDelete}>
+          <Button className="btn-custom-danger" onClick={confirmDelete}>
             Yes, Delete
           </Button>
         </Modal.Footer>
