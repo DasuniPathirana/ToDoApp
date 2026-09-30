@@ -1,0 +1,16 @@
+{
+  "name": "todo-app",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev --workspace=server\" \"npm start --workspace=client\"",
+    "server": "npm run dev --workspace=server",
+    "client": "npm start --workspace=client"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
