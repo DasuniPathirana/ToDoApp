@@ -71,8 +71,10 @@ function App() {
   };
 
   return (
-    <Container className="py-4" style={{ maxWidth: '700px' }}>
-      <h2 className="text-center mb-4">My Todos</h2>
+    <Container className="py-5" style={{ maxWidth: '650px' }}>
+      <div className="text-center mb-5">
+        <h1 className="planner-title highlight-pink d-inline-block shadow-sm">My To-Do List</h1>
+      </div>
 
       {error && (
         <Alert variant="danger" dismissible onClose={() => setError('')}>
@@ -88,7 +90,7 @@ function App() {
 
       {loading ? (
         <div className="text-center mt-4">
-          <Spinner animation="border" />
+          <Spinner animation="border" style={{ color: '#3d3532' }} />
         </div>
       ) : (
         <TodoList
