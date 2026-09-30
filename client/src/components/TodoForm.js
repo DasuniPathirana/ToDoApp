@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Button, Card } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 
 function TodoForm({ onSubmit, editingTodo, onCancel }) {
   const [title, setTitle] = useState('');
@@ -33,49 +33,52 @@ function TodoForm({ onSubmit, editingTodo, onCancel }) {
   };
 
   return (
-    <Card className="mb-4 shadow-sm">
-      <Card.Body>
-        <Form noValidate onSubmit={handleSubmit}>
-          <Form.Group className="mb-3">
-            <Form.Label>Title</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="What needs to be done?"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              isInvalid={validated && !title.trim()}
-              maxLength={100}
-            />
-            <Form.Control.Feedback type="invalid">
-              Title can't be empty.
-            </Form.Control.Feedback>
-          </Form.Group>
+    <div className="planner-card">
+      <h3 className="planner-title mb-3">
+        <span className="highlight-green">
+          {editingTodo ? 'Edit Task' : 'Add New Task'}
+        </span>
+      </h3>
+      <Form noValidate onSubmit={handleSubmit}>
+        <Form.Group className="mb-4">
+          <Form.Label className="fw-bold">Title</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="What needs to be done?"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            isInvalid={validated && !title.trim()}
+            maxLength={100}
+          />
+          <Form.Control.Feedback type="invalid">
+            Title can't be empty.
+          </Form.Control.Feedback>
+        </Form.Group>
 
-          <Form.Group className="mb-3">
-            <Form.Label>Description (optional)</Form.Label>
-            <Form.Control
-              as="textarea"
-              rows={2}
-              placeholder="Any extra details..."
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              maxLength={300}
-            />
-          </Form.Group>
+        <Form.Group className="mb-4">
+          <Form.Label className="fw-bold">Description (optional)</Form.Label>
+          <Form.Control
+            as="textarea"
+            rows={2}
+            placeholder="Any extra details..."
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            maxLength={300}
+          />
+        </Form.Group>
 
-          <div className="d-flex gap-2">
-            <Button type="submit" variant={editingTodo ? 'success' : 'primary'}>
-              {editingTodo ? 'Save Changes' : 'Add Todo'}
+        <div className="d-flex gap-2">
+          <Button type="submit" className="btn-custom-primary px-4">
+            {editingTodo ? 'Save Changes' : 'Add Todo'}
+          </Button>
+          {editingTodo && (
+            <Button className="btn-custom-secondary px-3" onClick={onCancel}>
+              Cancel
             </Button>
-            {editingTodo && (
-              <Button variant="outline-secondary" onClick={onCancel}>
-                Cancel
-              </Button>
-            )}
-          </div>
-        </Form>
-      </Card.Body>
-    </Card>
+          )}
+        </div>
+      </Form>
+    </div>
   );
 }
 
